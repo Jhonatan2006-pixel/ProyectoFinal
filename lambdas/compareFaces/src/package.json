@@ -1,0 +1,9 @@
+{
+  "name": "compare-faces",
+  "version": "1.0.0",
+  "description": "Lambda compareFaces - Proyecto final reconocimiento facial",
+  "main": "index.js",
+  "dependencies": {
+    "@aws-sdk/client-rekognition": "^3.700.0"
+  }
+}

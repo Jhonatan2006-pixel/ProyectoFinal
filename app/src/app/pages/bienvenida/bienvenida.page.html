@@ -1,0 +1,57 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="success">
+    <ion-title>Acceso concedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  @if (sesion(); as s) {
+    <div class="exito">
+      <ion-icon name="shield-checkmark"></ion-icon>
+      <h1>¡Bienvenido{{ usuario() ? ', ' + usuario()!.nombre : '' }}!</h1>
+      <p>Su identidad fue verificada con reconocimiento facial.</p>
+    </div>
+
+    <div class="comparacion">
+      <figure>
+        @if (usuario(); as u) { <img [src]="base64AUrl(u.foto)" alt="Foto registrada" /> }
+        <figcaption>Foto registrada</figcaption>
+      </figure>
+      <ion-icon name="swap-horizontal-outline" class="flecha"></ion-icon>
+      <figure>
+        <img [src]="base64AUrl(s.fotoLiveness)" alt="Foto de la prueba de vida" />
+        <figcaption>Prueba de vida</figcaption>
+      </figure>
+    </div>
+
+    <ion-list inset="true">
+      <ion-item>
+        <ion-icon slot="start" name="pulse-outline" color="primary"></ion-icon>
+        <ion-label>Confianza de prueba de vida</ion-label>
+        <ion-note slot="end">{{ s.confianzaLiveness | number: '1.1-1' }}%</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-icon slot="start" name="people-outline" color="primary"></ion-icon>
+        <ion-label>Similitud de rostros</ion-label>
+        <ion-note slot="end">{{ s.similitud | number: '1.1-2' }}%</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-icon slot="start" name="time-outline" color="primary"></ion-icon>
+        <ion-label>Fecha</ion-label>
+        <ion-note slot="end">{{ s.fecha | date: 'dd/MM/yyyy HH:mm:ss' }}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-icon slot="start" name="key-outline" color="primary"></ion-icon>
+        <ion-label class="ion-text-wrap">
+          <p>Session ID</p>
+          <h3 class="mono">{{ s.sessionId }}</h3>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" size="large" color="medium" (click)="cerrarSesion()">
+      <ion-icon slot="start" name="log-out-outline"></ion-icon>
+      Cerrar sesión
+    </ion-button>
+  }
+</ion-content>

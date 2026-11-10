@@ -1,0 +1,73 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title>FaceAuth Davinci</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <section class="hero">
+    <div class="hero-icono">
+      <ion-icon name="scan-outline"></ion-icon>
+    </div>
+    <h1>Reconocimiento facial</h1>
+    <p>Inicie sesión solo con su rostro, usando Amazon Rekognition.</p>
+  </section>
+
+  @if (!cargando()) {
+    @if (usuario(); as u) {
+      <ion-card class="tarjeta-usuario">
+        <ion-card-content>
+          <img class="avatar" [src]="base64AUrl(u.foto)" alt="Foto de perfil" />
+          <h2>{{ u.nombre }}</h2>
+          <p class="sub">Registrado el {{ u.fechaRegistro | date: 'dd/MM/yyyy HH:mm' }}</p>
+
+          <ion-button expand="block" size="large" routerLink="/login">
+            <ion-icon slot="start" name="happy-outline"></ion-icon>
+            Iniciar sesión con mi rostro
+          </ion-button>
+          <ion-button expand="block" fill="clear" color="danger" (click)="eliminarRegistro()">
+            <ion-icon slot="start" name="trash-outline"></ion-icon>
+            Eliminar registro
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    } @else {
+      <ion-card class="tarjeta-usuario">
+        <ion-card-content>
+          <ion-icon class="icono-grande" name="person-add-outline"></ion-icon>
+          <h2>Aún no está registrado</h2>
+          <p class="sub">Registre su nombre y una foto de su rostro para comenzar.</p>
+          <ion-button expand="block" size="large" routerLink="/registro">
+            <ion-icon slot="start" name="camera-outline"></ion-icon>
+            Registrarme
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    }
+  }
+
+  <h3 class="titulo-seccion">¿Cómo funciona?</h3>
+  <ion-list lines="none" class="pasos">
+    <ion-item>
+      <div class="numero" slot="start">1</div>
+      <ion-label>
+        <h3>Registro</h3>
+        <p>Se toma una foto de su rostro y se guarda en el teléfono.</p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <div class="numero" slot="start">2</div>
+      <ion-label>
+        <h3>Prueba de vida</h3>
+        <p>Amazon Rekognition Face Liveness comprueba que es una persona real y no una foto.</p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <div class="numero" slot="start">3</div>
+      <ion-label>
+        <h3>Comparación</h3>
+        <p>CompareFaces compara su rostro con la foto registrada.</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

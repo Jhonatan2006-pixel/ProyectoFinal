@@ -1,0 +1,35 @@
+.instrucciones {
+  color: var(--ion-color-medium);
+  text-align: center;
+}
+
+.marco-foto {
+  width: 220px;
+  height: 220px;
+  margin: 16px auto;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--ion-color-primary);
+  background: rgba(var(--ion-color-primary-rgb), 0.08);
+  display: grid;
+  place-items: center;
+
+  img { width: 100%; height: 100%; object-fit: cover; }
+
+  .vacio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--ion-color-primary);
+
+    ion-icon { font-size: 56px; }
+  }
+}
+
+.campo {
+  --background: transparent;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  margin: 16px 0;
+}

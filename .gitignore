@@ -1,0 +1,30 @@
+# Dependencias
+node_modules/
+
+# Compilados de Angular / Ionic
+app/www/
+app/.angular/
+
+# Compilados de Android
+app/android/.gradle/
+app/android/.kotlin/
+app/android/build/
+app/android/app/build/
+app/android/local.properties
+app/android/capacitor-cordova-android-plugins/build/
+*.keystore
+*.jks
+
+# ZIPs de las Lambdas (se generan con npm install + comprimir la carpeta src)
+lambdas/**/*.zip
+
+# Documentos y capturas de la entrega
+capturas/
+entrega/
+*.docx
+*.pdf
+*.apk
+
+# Sistema / editor
+.DS_Store
+Thumbs.db

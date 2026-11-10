@@ -1,0 +1,60 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Iniciar sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  @if (estado() === 'liveness') {
+    <!-- Componente de AWS Amplify (React) envuelto en Angular -->
+    <app-liveness
+      [sessionId]="sessionId()"
+      (completado)="onLivenessCompletado()"
+      (cancelado)="onLivenessCancelado()"
+      (fallo)="onLivenessFallo($event)"
+    ></app-liveness>
+  } @else {
+    @if (usuario(); as u) {
+      <div class="encabezado">
+        <img class="avatar" [src]="base64AUrl(u.foto)" alt="Foto de perfil" />
+        <h2>Hola, {{ u.nombre }}</h2>
+        <p class="sub">Verificaremos que es usted con una prueba de vida.</p>
+      </div>
+    }
+
+    <ion-list lines="none" class="pasos">
+      @for (paso of pasos(); track $index) {
+        <ion-item>
+          @switch (paso.estado) {
+            @case ('ok') { <ion-icon slot="start" color="success" name="checkmark-circle"></ion-icon> }
+            @case ('fallo') { <ion-icon slot="start" color="danger" name="close-circle"></ion-icon> }
+            @case ('en-curso') { <ion-spinner slot="start" name="crescent" color="primary"></ion-spinner> }
+            @default { <ion-icon slot="start" color="medium" name="ellipse-outline"></ion-icon> }
+          }
+          <ion-label class="ion-text-wrap">
+            <h3>{{ paso.texto }}</h3>
+            @if (paso.detalle) { <p>{{ paso.detalle }}</p> }
+          </ion-label>
+        </ion-item>
+      }
+    </ion-list>
+
+    @if (estado() === 'error') {
+      <div class="caja-error">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        <span>{{ mensajeError() }}</span>
+      </div>
+    }
+
+    @if (estado() === 'listo' || estado() === 'error') {
+      <ion-button expand="block" size="large" (click)="iniciar()">
+        <ion-icon slot="start" name="scan-outline"></ion-icon>
+        {{ estado() === 'error' ? 'Intentar de nuevo' : 'Comenzar reconocimiento' }}
+      </ion-button>
+      <p class="consejo">Consejo: busque un lugar con buena luz y mantenga el teléfono a la altura de su rostro.</p>
+    }
+  }
+</ion-content>

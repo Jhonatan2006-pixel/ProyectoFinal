@@ -1,0 +1,47 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <p class="instrucciones">
+    Tome una foto de frente, con buena luz y sin lentes oscuros. Esta foto se usará para reconocerlo.
+  </p>
+
+  <div class="marco-foto" (click)="tomarFoto()">
+    @if (foto(); as f) {
+      <img [src]="base64AUrl(f)" alt="Foto de perfil" />
+    } @else {
+      <div class="vacio">
+        <ion-icon name="camera-outline"></ion-icon>
+        <span>Toque para tomar la foto</span>
+      </div>
+    }
+  </div>
+
+  @if (foto()) {
+    <ion-button fill="clear" expand="block" (click)="tomarFoto()">
+      <ion-icon slot="start" name="refresh-outline"></ion-icon>
+      Tomar otra foto
+    </ion-button>
+  }
+
+  <ion-item class="campo" lines="none">
+    <ion-input
+      label="Nombre completo"
+      labelPlacement="floating"
+      fill="outline"
+      [(ngModel)]="nombre"
+      placeholder="Ej. Jhónatan Méndez"
+    ></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" size="large" (click)="guardar()" [disabled]="guardando()">
+    <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
+    Guardar registro
+  </ion-button>
+</ion-content>
