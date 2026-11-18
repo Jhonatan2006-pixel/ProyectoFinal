@@ -40,13 +40,6 @@
         <ion-label>Fecha</ion-label>
         <ion-note slot="end">{{ s.fecha | date: 'dd/MM/yyyy HH:mm:ss' }}</ion-note>
       </ion-item>
-      <ion-item>
-        <ion-icon slot="start" name="key-outline" color="primary"></ion-icon>
-        <ion-label class="ion-text-wrap">
-          <p>Session ID</p>
-          <h3 class="mono">{{ s.sessionId }}</h3>
-        </ion-label>
-      </ion-item>
     </ion-list>
 
     <ion-button expand="block" size="large" color="medium" (click)="cerrarSesion()">

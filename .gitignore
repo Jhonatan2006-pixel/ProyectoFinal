@@ -28,3 +28,4 @@ entrega/
 # Sistema / editor
 .DS_Store
 Thumbs.db
+app/android/keystore.properties

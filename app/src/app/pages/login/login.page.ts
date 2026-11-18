@@ -61,10 +61,10 @@ export class LoginPage {
     this.estado.set('listo');
     this.mensajeError.set('');
     this.pasos.set([
-      { texto: 'Crear sesión de prueba de vida (getSessionId)', estado: 'pendiente' },
-      { texto: 'Prueba de vida con la cámara (Face Liveness)', estado: 'pendiente' },
-      { texto: 'Obtener resultado (getSessionResults)', estado: 'pendiente' },
-      { texto: 'Comparar con su foto (compareFaces)', estado: 'pendiente' },
+      { texto: 'Preparando la verificación', estado: 'pendiente' },
+      { texto: 'Prueba de vida con la cámara', estado: 'pendiente' },
+      { texto: 'Confirmando que es una persona real', estado: 'pendiente' },
+      { texto: 'Comparando con su foto registrada', estado: 'pendiente' },
     ]);
   }
 
@@ -76,7 +76,7 @@ export class LoginPage {
     try {
       const sessionId = await this.api.crearSesion();
       this.sessionId.set(sessionId);
-      this.marcarPaso(0, 'ok', sessionId);
+      this.marcarPaso(0, 'ok');
       this.marcarPaso(1, 'en-curso');
       // Al cambiar a 'liveness' aparece el componente de Amplify en pantalla.
       this.estado.set('liveness');

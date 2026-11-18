@@ -2,16 +2,12 @@
   text-align: center;
   padding: 16px 8px 8px;
 
-  .hero-icono {
-    width: 88px;
-    height: 88px;
+  .hero-logo {
+    width: 96px;
+    height: 96px;
     margin: 0 auto 12px;
-    border-radius: 24px;
-    display: grid;
-    place-items: center;
-    background: var(--ion-color-primary);
-    color: #fff;
-    font-size: 48px;
+    display: block;
+    border-radius: 26px;
     box-shadow: 0 10px 24px rgba(var(--ion-color-primary-rgb), 0.35);
   }
 
@@ -19,22 +15,14 @@
   p { color: var(--ion-color-medium); margin-top: 6px; }
 }
 
-.titulo-seccion {
-  margin: 24px 4px 8px;
-  font-weight: 700;
-}
+.pie {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 28px;
+  font-size: 13px;
+  color: var(--ion-color-medium);
 
-.pasos ion-item {
-  --background: transparent;
-}
-
-.numero {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-weight: 700;
-  color: var(--ion-color-primary);
-  background: rgba(var(--ion-color-primary-rgb), 0.12);
+  ion-icon { font-size: 16px; }
 }
